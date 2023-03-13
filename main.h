@@ -21,6 +21,11 @@ int print_char(va_list arg);
 int print_str(va_list arg);
 int print_percent(va_list arg);
 int print_int(va_list arg);
+int print_int_helper(int num);
+int print_unsigned(va_list arg);
+int print_octal(va_list arg);
+int print_hex(va_list arg);
+int print_HEX(va_list arg);
 
 #endif /* MAIN_H */
 

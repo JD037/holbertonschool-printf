@@ -1,28 +1,22 @@
 #include "main.h"
 
 /**
- * print_int - A function to print a decimal integer
- * @arg: A va_list containing the next argument of type int
+ * print_unsigned - Prints an unsigned integer
+ * @list: List of arguments
  *
- * Return: The number of characters printed
+ * Return: Number of characters printed
  */
-int print_int(va_list arg)
+int print_unsigned(va_list arg)
 {
-	int num = va_arg(arg, int);
+	unsigned int num = va_arg(arg, unsigned int);
 	int count = 0;
-	int num_copy = num;
+	unsigned int num_copy = num;
 	int num_digits = 0;
-	int divisor = 1;
+	unsigned int divisor = 1;
 	int i;
 
 	if (num == 0)
 		return (_putchar('0'));
-
-	if (num < 0)
-	{
-		count += _putchar('-');
-		num = -num;
-	}
 
 	while (num_copy != 0)
 	{
@@ -36,11 +30,12 @@ int print_int(va_list arg)
 	while (divisor != 0)
 	{
 		int digit = num / divisor;
+
 		count += _putchar(digit + '0');
-		num %= divisor;
+
+		num -= digit * divisor;
 		divisor /= 10;
 	}
 
 	return (count);
 }
-
