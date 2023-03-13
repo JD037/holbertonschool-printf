@@ -1,17 +1,16 @@
 #include "main.h"
 
 /**
- * _printf - A custom implementation of printf function
- * @format: A character string containing zero or more directives
+ * get_spec_func - Finds the appropriate print function for a given specifier.
  *
- * Return: The number of characters printed (excluding the null byte used to end output to strings)
+ * @spec: Specifier to find a print function for.
+ *
+ * Return: Pointer to the print function corresponding to @spec, or NULL
+ *	if no such function exists.
  */
-int _printf(const char *format, ...)
+static int (*get_spec_func(char spec))(va_list)
 {
-	va_list args;
-	int i, count = 0;
-
-	specifier_t specs[] = {
+	static specifier_t specs[] = {
 		{'c', print_char},
 		{'s', print_str},
 		{'%', print_percent},
@@ -20,23 +19,45 @@ int _printf(const char *format, ...)
 		{'\0', NULL}
 	};
 
+	int i;
+
+	for (i = 0; specs[i].spec != '\0'; i++)
+	{
+		if (spec == specs[i].spec)
+			return (specs[i].func);
+	}
+
+	return (NULL);
+}
+
+/**
+ * _printf - A custom implementation of printf function
+ * @format: A character string containing zero or more directives
+ *
+ * Return: The number of characters printed (excluding the null byte
+ * used to end output to strings)
+ */
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int count = 0, i;
+
 	va_start(args, format);
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
-			int j;
+
+			int (*func)(va_list);
+
 			i++;
-			for (j = 0; specs[j].spec != '\0'; j++)
-			{
-				if (format[i] == specs[j].spec)
-				{
-					count += specs[j].func(args);
-					break;
-				}
-			}
-			if (specs[j].spec == '\0' && format[i] != '\0')
+
+			func = get_spec_func(format[i]);
+
+			if (func != NULL)
+				count += func(args);
+			else if (format[i] != '\0')
 			{
 				count += _putchar('%');
 				count += _putchar(format[i]);
@@ -49,6 +70,7 @@ int _printf(const char *format, ...)
 	}
 
 	va_end(args);
+
 	return (count);
 }
 
@@ -61,6 +83,7 @@ int _printf(const char *format, ...)
 int print_char(va_list arg)
 {
 	char c = va_arg(arg, int);
+
 	return (_putchar(c));
 }
 
