@@ -28,10 +28,10 @@ static int (*get_spec_func(char spec))(va_list)
 	for (i = 0; specs[i].spec != '\0'; i++)
 	{
 		if (spec == specs[i].spec)
-			return specs[i].func;
+			return (specs[i].func);
 	}
 
-	return NULL;
+	return (NULL);
 }
 
 /**
@@ -75,7 +75,7 @@ int _printf(const char *format, ...)
 
 	va_end(args);
 
-	return count;
+	return (count);
 }
 
 /**

@@ -2,7 +2,7 @@
 
 /**
  * print_unsigned - Prints an unsigned integer
- * @list: List of arguments
+ * @arg: the argument to print
  *
  * Return: Number of characters printed
  */

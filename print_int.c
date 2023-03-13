@@ -36,6 +36,7 @@ int print_int(va_list arg)
 	while (divisor != 0)
 	{
 		int digit = num / divisor;
+
 		count += _putchar(digit + '0');
 		num %= divisor;
 		divisor /= 10;
