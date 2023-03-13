@@ -120,5 +120,6 @@ int print_str(va_list arg)
 int print_percent(va_list arg)
 {
 	(void)arg;
-	return (_putchar('%'));
+	_putchar('%');
+	return (1);
 }
