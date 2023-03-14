@@ -18,7 +18,7 @@ x: prints an unsigned hexadecimal number (lowercase)
 X: prints an unsigned hexadecimal number (uppercase)
 If a specifier character is not recognized, the % character and the unrecognized character are both printed.
 
-Exa
+Example
 
 #include "main.h"
 
