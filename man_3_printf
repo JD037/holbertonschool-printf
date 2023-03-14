@@ -1,0 +1,48 @@
+TH _printf 3 "14 March 2023" "1.0" "printf man page"
+.SH NAME
+_printf - A custom implementation of the printf function
+
+.SH SYNOPSIS
+#include "main.h"
+
+int _printf(const char *format, ...);
+
+.SH DESCRIPTION
+The _printf function prints a formatted string to the standard output stream. It takes a character string containing zero or more directives and optional arguments. The directives are introduced by a percent sign (%) and are replaced by the corresponding arguments after conversion.
+
+The following format specifiers are supported:
+
+.TP
+%c
+Print a single character.
+
+.TP
+%s
+Print a null-terminated string of characters.
+
+.TP
+%%
+Print a literal percent sign.
+
+.TP
+%d, %i
+Print a signed decimal integer.
+
+.TP
+%u
+Print an unsigned decimal integer.
+
+.TP
+%o
+Print an octal integer.
+
+.TP
+%x, %X
+Print a hexadecimal integer.
+
+.SH RETURN VALUE
+Upon successful completion, _printf returns the number of characters printed (excluding the null byte used to end output to strings).
+
+.SH AUTHORS
+Written by Alton Andrews and Josh Davis.
+!Alton Andrews
