@@ -3,6 +3,9 @@
 
 #include <stddef.h>
 #include <stdarg.h>
+#include <limits.h>
+#include <stdio.h>
+#include <string.h>
 
 /**
  * struct specifier - Struct for printf specifiers
