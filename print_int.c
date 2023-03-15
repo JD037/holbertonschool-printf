@@ -10,7 +10,7 @@ int print_int(va_list arg)
 {
 	int num = va_arg(arg, int);
 	int count = 0;
-	int num_copy = num;
+	int num_copy = num < 0 ? -num : num;
 	int num_digits = 0;
 	int divisor = 1;
 	int i;
@@ -21,27 +21,23 @@ int print_int(va_list arg)
 	if (num < 0)
 	{
 		count += _putchar('-');
-		num = -num;
+		num_copy = -num;
 	}
 
-	while (num_copy != 0)
+	while (num_copy / divisor > 0)
 	{
-		num_copy /= 10;
+		divisor *= 10;
 		num_digits++;
 	}
 
-	for (i = 1; i < num_digits; i++)
-		divisor *= 10;
+	divisor /= 10;
 
-	while (divisor != 0)
+	for (i = 0; i < num_digits; i++)
 	{
-		int digit = num / divisor;
-
-		count += _putchar(digit + '0');
-		num %= divisor;
+		count += _putchar('0' + num_copy / divisor);
+		num_copy %= divisor;
 		divisor /= 10;
 	}
 
 	return (count);
 }
-
